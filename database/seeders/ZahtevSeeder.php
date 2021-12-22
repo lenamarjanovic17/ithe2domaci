@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Kredit;
-class KreditSeeder extends Seeder
+use App\Models\Zahtev;
+
+class ZahtevSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +14,6 @@ class KreditSeeder extends Seeder
      */
     public function run()
     {
-        Kredit::factory()->count(8)->create();
+        Zahtev::factory()->count(8)->create();
     }
-    
 }

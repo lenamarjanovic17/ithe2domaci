@@ -17,10 +17,10 @@ class CreateKreditsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('naziv');
-            $table->decimal ('minimun_primanja', $precision = 8, $scale = 2);
-            $table->decimal ('minimum_zaposlen', $precision = 8, $scale = 2);
-            $table->decimal ('minimalni_iznos', $precision = 8, $scale = 2);
-            $table->decimal ('maksimalni_iznos', $precision = 8, $scale = 2);
+            $table->decimal ('minimun_primanja', $precision = 10, $scale = 2);
+            $table->decimal ('minimum_zaposlen', $precision = 10, $scale = 2);
+            $table->decimal ('minimalni_iznos', $precision = 10, $scale = 2);
+            $table->decimal ('maksimalni_iznos', $precision = 10, $scale = 2);
             $table->bigInteger('minimalni_period');
             $table->bigInteger('maksimalni_period');
             $table->decimal ('kamatna_stopa', $precision = 6, $scale = 4);

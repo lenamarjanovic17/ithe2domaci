@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddProsekPrimanja extends Migration
+class AddForeignKeys extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddProsekPrimanja extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->decimal('prosek_primanja',12,1);
-            $table->bigInteger('period_zaposlenja');
+        Schema::table('zahtevs', function (Blueprint $table) {
+            $table->foreignId('kredit_id')->constrained();
+            $table->foreignId('user_id')->constrained();
         });
     }
 
@@ -26,9 +26,9 @@ class AddProsekPrimanja extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->removeColumn('prosek_primanja');
-            $table->removeColumn('period_zaposlenja');
+        Schema::table('zahtevs', function (Blueprint $table) {
+            $table->removeColumn('kredit_id');
+            $table->removeColumn('user_id');
         });
     }
 }

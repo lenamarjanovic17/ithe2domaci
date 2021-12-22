@@ -15,7 +15,7 @@ class ZahtevController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Zahtev::all());
     }
 
     /**
@@ -26,7 +26,14 @@ class ZahtevController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $zahtev = Zahtev::create($request->all());
+            return response()->json($zahtev);
+         } catch (Exception $ex) {
+             return responose()->json([
+                 "error"=>$ex->getMessage()
+             ],500);
+         }
     }
 
     /**
@@ -37,7 +44,7 @@ class ZahtevController extends Controller
      */
     public function show(Zahtev $zahtev)
     {
-        //
+        return response()->json($zahtev);
     }
 
     /**
@@ -49,7 +56,14 @@ class ZahtevController extends Controller
      */
     public function update(Request $request, Zahtev $zahtev)
     {
-        //
+        try {
+            $zahtev->update($request->all());
+            return response()->json($zahtev);
+        } catch (\Exception $ex) {
+            return responose()->json([
+                "error"=>$ex->getMessage()
+            ],500);
+        }
     }
 
     /**
@@ -60,6 +74,13 @@ class ZahtevController extends Controller
      */
     public function destroy(Zahtev $zahtev)
     {
-        //
+        try {
+            $zahtev->delete();
+          return  \response()->noContent();
+        } catch (\Exception $ex) {
+            return  response()->json([
+                "error"=>$ex->getMessage()
+            ],500);
+        }
     }
 }

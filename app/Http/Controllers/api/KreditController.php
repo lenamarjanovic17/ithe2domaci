@@ -15,7 +15,7 @@ class KreditController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Kredit::all());
     }
 
     /**
@@ -26,7 +26,14 @@ class KreditController extends Controller
      */
     public function store(Request $request)
     {
-        //
+     try {
+        $kredit = Kredit::create($request->all());
+        return response()->json($kredit);
+     } catch (Exception $ex) {
+         return responose()->json([
+             "error"=>$ex->getMessage()
+         ],500);
+     }
     }
 
     /**
@@ -37,7 +44,8 @@ class KreditController extends Controller
      */
     public function show(Kredit $kredit)
     {
-        //
+       
+       return response()->json($kredit);
     }
 
     /**
@@ -49,7 +57,14 @@ class KreditController extends Controller
      */
     public function update(Request $request, Kredit $kredit)
     {
-        //
+        try {
+            $kredit->update($request->all());
+            return response()->json($kredit);
+        } catch (\Exception $ex) {
+            return responose()->json([
+                "error"=>$ex->getMessage()
+            ],500);
+        }
     }
 
     /**
@@ -60,6 +75,13 @@ class KreditController extends Controller
      */
     public function destroy(Kredit $kredit)
     {
-        //
+        try {
+            $kredit->delete();
+          return  \response()->noContent();
+        } catch (\Exception $ex) {
+            return  response()->json([
+                "error"=>$ex->getMessage()
+            ],500);
+        }
     }
 }

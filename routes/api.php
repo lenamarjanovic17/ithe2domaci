@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Http\Controllers\api\KreditController;
+use App\Http\Controllers\api\ZahtevController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
@@ -27,7 +29,7 @@ Route::post('/login', function (Request $request) {
 
     return $user->createToken($request->email)->plainTextToken;
 });
-Route::middleware('auth:sanctum')->group(function () {
+Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResources([
         '/kredits'=>KreditController::class,
         '/zahtevs'=>ZahtevController::class,

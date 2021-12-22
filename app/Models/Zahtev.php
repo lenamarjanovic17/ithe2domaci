@@ -15,4 +15,11 @@ class Zahtev extends Model
         'kredit_id',
         'user_id'
     ];
+
+    public function kredit(){
+        return $this->belongsTo(Kredit::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
